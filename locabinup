@@ -1,0 +1,7 @@
+#!/bin/sh
+set -eu
+echo "Let's update"
+for scr in $(ls $HOME/.local/locabinup/);do
+	echo checking $scr
+	sh $HOME/.local/locabinup/$scr
+done
