@@ -7,8 +7,9 @@ then
 	exit
 fi
 echo "updating Webcord"
-echo $_WEBCORDVERS > ~/.cache/webcordvers
 cd ~/.local/bin/
 curl -LJO "https://github.com/SpacingBat3/WebCord/releases/download/v$_WEBCORDVERS/webcord-$_WEBCORDVERS-x64.AppImage" -O
 mv -vf webcord-$_WEBCORDVERS-x64.AppImage webcord.AppImage
 chmod +x webcord.AppImage
+echo $_WEBCORDVERS > ~/.cache/webcordvers
+
