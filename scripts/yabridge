@@ -6,8 +6,8 @@ then
 	exit
 fi
 echo "Updating yabridge"
-cd .local/share
-curl -LJO "https://github.com/robbert-vdh/yabridge/releases/download/${_YABVERSION}/yabridge-${_YABVERSION}.tar.gz" -O 
+cd ~/.local/share
+curl -LJO "https://github.com/robbert-vdh/yabridge/releases/download/${_YABVERSION}/yabridge-${_YABVERSION}.tar.gz"
 tar -xavf yabridge-"${_YABVERSION}".tar.gz
 rm yabridge-$_YABVERSION.tar.gz
 yabridgectl sync

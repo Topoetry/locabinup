@@ -1,0 +1,14 @@
+#!/bin/sh
+set -eu
+export _CAPRINEVERS=$(curl -s https://api.github.com/repos/sindresorhus/caprine/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")'| cut -c2-)
+if [ "$_CAPRINEVERS" = "$(cat ~/.cache/caprinevers)" ]
+then
+	echo "Already up to date"
+	exit
+fi
+echo "updating caprine"
+cd ~/.local/bin/
+curl -LJO "https://github.com/sindresorhus/caprine/releases/download/v$_CAPRINEVERS/Caprine-$_CAPRINEVERS.AppImage"
+mv -vf Caprine-$_CAPRINEVERS.AppImage caprine.AppImage
+chmod +x caprine.AppImage
+echo $_CAPRINEVERS > ~/.cache/caprinevers
