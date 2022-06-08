@@ -9,6 +9,6 @@ fi
 echo "updating Japdl"
 cd ~/.local/bin/
 curl -LJO "https://github.com/japdl/japdl/releases/download/v$_JAPDLVERS/japdl-$_JAPDLVERS.AppImage" -O
-mv -vf webcord-$_JAPDLVERS.AppImage japdl.AppImage
+mv -vf japdl-$_JAPDLVERS.AppImage japdl.AppImage
 chmod +x japdl.AppImage
 echo $_JAPDLVERS > ~/.cache/japdlvers
