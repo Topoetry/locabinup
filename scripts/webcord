@@ -8,7 +8,7 @@ then
 fi
 echo "updating Webcord"
 cd ~/.local/bin/
-curl -LJO "https://github.com/SpacingBat3/WebCord/releases/download/v$_VERS/webcord-$_VERS-x64.AppImage" -O
+curl -LJO "https://github.com/SpacingBat3/WebCord/releases/download/v$_VERS/webcord-$_VERS-x64.AppImage"
 mv -vf webcord-$_VERS-x64.AppImage webcord.AppImage
 chmod +x webcord.AppImage
 echo $_VERS > $LOCABINUPDIR/world/.webcord
