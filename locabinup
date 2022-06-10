@@ -1,7 +1,37 @@
 #!/bin/sh
-set -eu
-echo "Let's update"
-for scr in $(ls $HOME/.local/locabinup/);do
-	echo checking $scr
-	sh $HOME/.local/locabinup/$scr
-done
+_LBUDEFDIR=$HOME/.locabinup
+[ -z "$XDG_DATA_HOME" ] || _LBUDEFDIR="$XDG_DATA_HOME/locabinup"
+export LOCABINUPDIR="${LOCABINUPDIR:-$_LBUDEFDIR}"
+echo $LOCABINUPDIR
+set -e
+case $1 in
+	update|"")
+		echo "Let's update"
+		for scr in $(ls $LOCABINUPDIR/world);do
+			echo checking $scr
+			sh $LOCABINUPDIR/world/$scr
+		done
+		;;
+	list)
+		for w in $(ls $LOCABINUPDIR/world)
+		do
+			echo "$w version "`cat $LOCABINUP/world/.$w`
+		done
+		;;
+	add)
+		[ -z "$2" ] && echo "empty string" && exit
+		cp $LOCABINUP/universe/$2 $LOCABINUP/world
+		sh $LOCABINUP/world/$2
+		;;
+	rm)
+		[ -z "$2" ] && echo "empty string" && exit
+		rm $LOCABINUP/world/$2 $LOCABINUP/world/.$2
+		;;
+	fd)
+		[ -z "$2" ] && echo "empty string" && exit
+		find $LOCABINUP/universe/$2
+		;;
+	*)
+		echo "usefull help message 88w88"
+		;;
+esac

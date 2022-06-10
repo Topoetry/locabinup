@@ -1,14 +1,14 @@
 #!/bin/sh
 set -eu
-export _WEBCORDVERS=$(curl -s https://api.github.com/repos/SpacingBat3/WebCord/releases/latest | grep -oP '"tag_name": "\K(.*)'| cut -c2-6)
-if [ "$_WEBCORDVERS" = "$(cat ~/.cache/webcordvers)" ]
+export _VERS=$(curl -s https://api.github.com/repos/SpacingBat3/WebCord/releases/latest | grep -oP '"tag_name": "\K(.*)'| cut -c2-6)
+if [ "$_VERS" = "$(cat $LOCABINUPDIR/world/.webcord)" ]
 then
 	echo "Already up to date"
 	exit
 fi
 echo "updating Webcord"
 cd ~/.local/bin/
-curl -LJO "https://github.com/SpacingBat3/WebCord/releases/download/v$_WEBCORDVERS/webcord-$_WEBCORDVERS-x64.AppImage" -O
-mv -vf webcord-$_WEBCORDVERS-x64.AppImage webcord.AppImage
+curl -LJO "https://github.com/SpacingBat3/WebCord/releases/download/v$_VERS/webcord-$_VERS-x64.AppImage" -O
+mv -vf webcord-$_VERS-x64.AppImage webcord.AppImage
 chmod +x webcord.AppImage
-echo $_WEBCORDVERS > ~/.cache/webcordvers
+echo $_VERS > $LOCABINUPDIR/world/.webcord

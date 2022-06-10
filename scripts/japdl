@@ -1,14 +1,14 @@
 #!/bin/sh
 set -eu
-export _JAPDLVERS=$(curl -s https://api.github.com/repos/japdl/japdl/releases/latest | grep -oP '"tag_name": "\K(.*)'| cut -c2-6)
-if [ "$_JAPDLVERS" = "$(cat ~/.cache/japdlvers)" ]
+export _VERS=$(curl -s https://api.github.com/repos/japdl/japdl/releases/latest | grep -oP '"tag_name": "\K(.*)'| cut -c2-6)
+if [ "$_VERS" = "$(cat $LOCABINUPDIR/world/.japdl)" ]
 then
 	echo "Already up to date"
 	exit
 fi
 echo "updating Japdl"
 cd ~/.local/bin/
-curl -LJO "https://github.com/japdl/japdl/releases/download/v$_JAPDLVERS/japdl-$_JAPDLVERS.AppImage" -O
-mv -vf japdl-$_JAPDLVERS.AppImage japdl.AppImage
+curl -LJO "https://github.com/japdl/japdl/releases/download/v$_VERS/japdl-$_VERS.AppImage"
+mv -vf japdl-$_VERS.AppImage japdl.AppImage
 chmod +x japdl.AppImage
-echo $_JAPDLVERS > ~/.cache/japdlvers
+echo $_VERS > $LOCABINUPDIR/world/.japdl

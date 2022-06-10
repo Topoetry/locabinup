@@ -1,13 +1,14 @@
 #!/bin/sh
-export _YABVERSION=$(curl -s https://api.github.com/repos/robbert-vdh/yabridge/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")')
-if [ "$_YABVERSION" = "$(yabridgectl -V | cut -c13-)" ]
+export _VERS=$(curl -s https://api.github.com/repos/robbert-vdh/yabridge/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")')
+if [ "$_VERS" = $LOCABINUP/world/.yabridge ]
 then
 	echo "Already up to date"
 	exit
 fi
 echo "Updating yabridge"
 cd ~/.local/share
-curl -LJO "https://github.com/robbert-vdh/yabridge/releases/download/${_YABVERSION}/yabridge-${_YABVERSION}.tar.gz"
-tar -xavf yabridge-"${_YABVERSION}".tar.gz
-rm yabridge-$_YABVERSION.tar.gz
+curl -LJO "https://github.com/robbert-vdh/yabridge/releases/download/${_VERS}/yabridge-${_VERS}.tar.gz"
+tar -xavf yabridge-"${_VERS}".tar.gz
+rm yabridge-$_VERS.tar.gz
+echo $_VERS > $LOCABINUP/world/.yabridge
 yabridgectl sync
