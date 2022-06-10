@@ -27,8 +27,7 @@ case $1 in
 		rm $LOCABINUPDIR/world/$2 $LOCABINUPDIR/world/.$2
 		;;
 	fd)
-		[ -z "$2" ] && echo "empty string" && exit
-		find $LOCABINUPDIR/universe/$2
+		ls -1 $LOCABINUPDIR/universe | grep -i "$2"
 		;;
 	*)
 		echo "usefull help message 88w88"
