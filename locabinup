@@ -2,7 +2,6 @@
 _LBUDEFDIR=$HOME/.locabinup
 [ -z "$XDG_DATA_HOME" ] || _LBUDEFDIR="$XDG_DATA_HOME/locabinup"
 export LOCABINUPDIR="${LOCABINUPDIR:-$_LBUDEFDIR}"
-echo $LOCABINUPDIR
 set -e
 case $1 in
 	update|"")
@@ -15,21 +14,21 @@ case $1 in
 	list)
 		for w in $(ls $LOCABINUPDIR/world)
 		do
-			echo "$w version "`cat $LOCABINUP/world/.$w`
+			echo "$w version "`cat $LOCABINUPDIR/world/.$w`
 		done
 		;;
 	add)
 		[ -z "$2" ] && echo "empty string" && exit
-		cp $LOCABINUP/universe/$2 $LOCABINUP/world
-		sh $LOCABINUP/world/$2
+		cp $LOCABINUPDIR/universe/$2 $LOCABINUPDIR/world
+		sh $LOCABINUPDIR/world/$2
 		;;
 	rm)
 		[ -z "$2" ] && echo "empty string" && exit
-		rm $LOCABINUP/world/$2 $LOCABINUP/world/.$2
+		rm $LOCABINUPDIR/world/$2 $LOCABINUPDIR/world/.$2
 		;;
 	fd)
 		[ -z "$2" ] && echo "empty string" && exit
-		find $LOCABINUP/universe/$2
+		find $LOCABINUPDIR/universe/$2
 		;;
 	*)
 		echo "usefull help message 88w88"
