@@ -4,7 +4,9 @@ Simple script to fetch and update binary release from github in home directory. 
 
 # Install :
  git clone https://www.github.com/topoetry/locabinup
+
  cd locabinup
+
  make install
 
  # remove
