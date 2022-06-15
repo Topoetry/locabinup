@@ -1,4 +1,5 @@
 install:
+	@mkdir -p ${HOME}/.local/bin
 	@cp -fv locabinup ${HOME}/.local/bin/
 	@chmod +x ${HOME}/.local/bin/locabinup
 	@mkdir -p ${HOME}/.local/share/locabinup
