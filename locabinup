@@ -1,5 +1,5 @@
 #!/bin/sh
-_LBUDEFDIR=$HOME/.locabinup
+_LBUDEFDIR=$HOME/.local/share/locabinup
 [ -z "$XDG_DATA_HOME" ] || _LBUDEFDIR="$XDG_DATA_HOME/locabinup"
 export LOCABINUPDIR="${LOCABINUPDIR:-$_LBUDEFDIR}"
 set -e
